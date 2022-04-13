@@ -39,6 +39,11 @@ jobs:
           #production_branch: "main"
           #deployment_environment: "test"
           ###### End of Repository/Build Configurations ######
+      - name: Print event
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: |
+          echo "$GITHUB_CONTEXT"
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
